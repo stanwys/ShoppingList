@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/Title" android:layout_weight="4"/>
+    <Button
+            android:text="Archive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/ArchiveButton" android:layout_weight="1"/>
+    <Button
+            android:text="Remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/RemoveButton" android:layout_weight="1"/>
+</LinearLayout>
