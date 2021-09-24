@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter
 
 private val TAB_TITLES = arrayOf(
     "Shopping Lists",
-    "Archived Shopping Lists"
+    "Archived"
 )
 
 /**

@@ -20,17 +20,17 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_green_light"
             app:layout_scrollFlags="scroll|enterAlways"
-            app:title="Shopping lists"
+            app:title="Shopping Lists"
             app:titleTextColor="@color/white" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:background="@android:color/holo_green_light"
             app:tabGravity="fill"
-            app:tabMode="scrollable"
+            app:tabMaxWidth="0dp"
+            app:tabMode="fixed"
             app:tabTextColor="@color/white">
 
             <com.google.android.material.tabs.TabItem
@@ -41,7 +41,7 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Archived Shopping Lists" />
+                android:text="Archived" />
         </com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -49,6 +49,7 @@
         android:id="@+id/container"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:background="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

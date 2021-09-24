@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <TextView
@@ -11,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Enter shopping list name:"
         android:textAlignment="center"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <EditText
@@ -20,6 +22,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColor="@color/black"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <LinearLayout
@@ -35,7 +38,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
-            android:text="Cancel" />
+            android:backgroundTint="#EEE2AC"
+            android:text="Cancel"
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/ConfirmButton"
@@ -45,6 +50,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="1"
+            android:backgroundTint="#EEE2AC"
+            android:textColor="@color/black"
             android:text="Confirm" />
     </LinearLayout>
 </LinearLayout>

@@ -32,14 +32,17 @@
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_margin="5dp"
+        android:backgroundTint="#EEE2AC"
+        android:textColor="@color/black"
         android:text="Archive" />
 
     <ImageButton
         android:id="@+id/RemoveButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="50dp"
         android:layout_margin="5dp"
         android:layout_weight="1"
+        android:background="@android:color/transparent"
         app:srcCompat="@android:drawable/ic_delete" />
 
 </LinearLayout>
