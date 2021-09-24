@@ -1,20 +1,16 @@
 package com.example.shoppinglist.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ListView
-import android.widget.Toast
-import androidx.core.view.get
 import androidx.lifecycle.ViewModelProvider
 import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.FragmentArchivedShoppingListBinding
-import com.example.shoppinglist.databinding.FragmentShoppingListBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.shoppinglist.model.ShoppingListViewModel
+import com.example.shoppinglist.model.ShoppingProject
 
 class ArchivedShoppingListFragment : Fragment() {
 
@@ -23,32 +19,24 @@ class ArchivedShoppingListFragment : Fragment() {
     private var _binding: FragmentArchivedShoppingListBinding? = null
     private val binding get() = _binding!!
 
-    private var mListAdapter: ShoppingProjectAdapter? = null
+    private var mListAdapter: ShoppingAdapter<ShoppingProject>? = null
     private var mListView: ListView? = null
-    private lateinit var mListener: ShoppingProjectAdapter.ListAdapterListener
+    private lateinit var mListener: ShoppingAdapter.ListAdapterListener
     private lateinit var viewModel: ShoppingListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(ShoppingListViewModel::class.java)
-        mListener = object : ShoppingProjectAdapter.ListAdapterListener {
+        mListener = object : ShoppingAdapter.ListAdapterListener {
             override fun onClickRemoveButton(position: Int) {
                 viewModel.removeArchivedShoppingProjectAtIndex(position)
-                Toast.makeText(
-                    getActivity(),
-                    "open ${viewModel.getShoppingProjectsList().size} " +
-                            ", arch: ${viewModel.getArchivedShoppingProjectsList().size}",
-                    Toast.LENGTH_SHORT
-                ).show();
             }
             override fun onClickArchiveButton(position: Int) {
                 viewModel.unarchiveShoppingProjectAtIndex(position)
-                Toast.makeText(
-                    getActivity(),
-                    "open ${viewModel.getShoppingProjectsList().size} " +
-                            ", arch: ${viewModel.getArchivedShoppingProjectsList().size}",
-                    Toast.LENGTH_SHORT
-                ).show();
+            }
+            override fun onClickNewActivityButton(position: Int) {
+            }
+            override fun onClickCompleteButton(position: Int) {
             }
         }
     }
@@ -70,7 +58,7 @@ class ArchivedShoppingListFragment : Fragment() {
     }
 
     private fun updateListView(){
-        mListAdapter = ShoppingProjectAdapter(requireActivity(),
+        mListAdapter = ShoppingAdapter(requireActivity(),
             R.layout.archived_shopping_project,
             ArrayList(viewModel.getArchivedShoppingProjectsList()), mListener)
         mListView!!.adapter = mListAdapter

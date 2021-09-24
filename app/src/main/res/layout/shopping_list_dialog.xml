@@ -9,7 +9,7 @@
         android:id="@+id/titleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter shopping list title:"
+        android:text="Enter shopping list name:"
         android:textAlignment="center"
         android:textSize="20sp" />
 

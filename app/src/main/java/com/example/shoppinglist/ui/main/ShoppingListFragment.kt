@@ -1,20 +1,21 @@
 package com.example.shoppinglist.ui.main
 
 import android.app.Dialog
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 
-import androidx.lifecycle.Observer
 import com.example.shoppinglist.R
 import com.example.shoppinglist.databinding.FragmentShoppingListBinding
 import com.example.shoppinglist.model.ShoppingProject
 import android.widget.*
+import com.example.shoppinglist.ShoppingListActivity
+import com.example.shoppinglist.model.ShoppingListViewModel
 
 
 class ShoppingListFragment : Fragment() {
@@ -23,32 +24,31 @@ class ShoppingListFragment : Fragment() {
     // onDestroyView.
     private var _binding: FragmentShoppingListBinding? = null
     private val binding get() = _binding!!
-    private var mListAdapter: ShoppingProjectAdapter? = null
+    private var mListAdapter: ShoppingAdapter<ShoppingProject>? = null
     private var mListView: ListView? = null
-    private lateinit var mListener: ShoppingProjectAdapter.ListAdapterListener
+    private lateinit var mListener: ShoppingAdapter.ListAdapterListener
     private lateinit var viewModel: ShoppingListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(ShoppingListViewModel::class.java)
-        mListener = object : ShoppingProjectAdapter.ListAdapterListener {
+        //viewModel.initializeData()
+
+        mListener = object : ShoppingAdapter.ListAdapterListener {
             override fun onClickRemoveButton(position: Int) {
                 viewModel.removeShoppingProjectAtIndex(position)
-                Toast.makeText(
-                    getActivity(),
-                    "open ${viewModel.getShoppingProjectsList().size} " +
-                            ", arch: ${viewModel.getArchivedShoppingProjectsList().size}",
-                    Toast.LENGTH_SHORT
-                ).show();
             }
             override fun onClickArchiveButton(position: Int) {
                 viewModel.archiveShoppingProjectAtIndex(position)
-                Toast.makeText(
-                    getActivity(),
-                    "open ${viewModel.getShoppingProjectsList().size} " +
-                            ", arch: ${viewModel.getArchivedShoppingProjectsList().size}",
-                    Toast.LENGTH_SHORT
-                ).show();
+            }
+            override fun onClickNewActivityButton(position: Int) {
+                val inT = Intent(context, ShoppingListActivity::class.java)
+                val sp = viewModel.getShoppingProjectAtIndex(position)
+                inT.putExtra("title", sp.name)
+                inT.putExtra("projectId", sp.id.toString())
+                context?.startActivity(inT)
+            }
+            override fun onClickCompleteButton(position: Int) {
             }
         }
     }
@@ -78,7 +78,7 @@ class ShoppingListFragment : Fragment() {
     }
 
     private fun updateListView(){
-        mListAdapter = ShoppingProjectAdapter(requireActivity(),
+        mListAdapter = ShoppingAdapter(requireActivity(),
             R.layout.shopping_project,
             ArrayList(viewModel.getShoppingProjectsList()), mListener)
         mListView!!.adapter = mListAdapter
@@ -89,6 +89,8 @@ class ShoppingListFragment : Fragment() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.shopping_list_dialog)
 
+        val header = dialog.findViewById<TextView>(R.id.titleView)
+        header.setText("Enter shopping list name:")
         val title = dialog.findViewById<EditText>(R.id.editTitleName)
         val confirmButton = dialog.findViewById<Button>(R.id.ConfirmButton)
         val cancelButton = dialog.findViewById<Button>(R.id.CancelButton)
@@ -96,9 +98,10 @@ class ShoppingListFragment : Fragment() {
         confirmButton.setOnClickListener {
             val name = title.text.toString()
             val sp = ShoppingProject(name)
-            viewModel.addShoppingProject(sp)
+
+            viewModel.addNewShoppingProject(sp)
+
             updateListView()
-            //mListAdapter?.notifyDataSetChanged()
             dialog.dismiss()
         }
 

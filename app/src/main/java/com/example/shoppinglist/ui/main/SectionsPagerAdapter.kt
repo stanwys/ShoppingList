@@ -1,11 +1,8 @@
 package com.example.shoppinglist.ui.main
 
-import android.content.Context
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.shoppinglist.R
 
 private val TAB_TITLES = arrayOf(
     "Shopping Lists",
@@ -32,7 +29,6 @@ class SectionsPagerAdapter(fm: FragmentManager) :
     }
 
     override fun getCount(): Int {
-        // Show 2 total pages.
         return 2
     }
 }

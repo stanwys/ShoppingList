@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/ItemName" android:layout_weight="4"/>
-    <Button
-            android:text="Completed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/CompletedButton" android:layout_weight="1"/>
-    <Button
-            android:text="Remove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/RemoveButton" android:layout_weight="1"/>
+        android:id="@+id/Title"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="12"
+        android:padding="5dp"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <CheckBox
+        android:id="@+id/CompletedBox"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+
+    <ImageButton
+        android:id="@+id/RemoveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        app:srcCompat="@android:drawable/ic_delete" />
+
 </LinearLayout>
