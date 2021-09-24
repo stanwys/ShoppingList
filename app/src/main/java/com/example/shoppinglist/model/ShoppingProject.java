@@ -1,20 +1,23 @@
 package com.example.shoppinglist.model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class ShoppingProject implements Comparable<ShoppingProject> {
 
     private int id;
-    private int date;
+    private Date date;
     private String name;
 
     public ShoppingProject(String name){
         this.id = -1;
-        this.date = -1;
+        this.date = Calendar.getInstance().getTime();
         this.name = name;
     }
 
     @Override
     public int compareTo(ShoppingProject sp){
-        return Integer.compare(this.date, sp.getDate());
+        return this.date.compareTo(sp.getDate());
     }
 
     public int getId() {
@@ -25,11 +28,11 @@ public class ShoppingProject implements Comparable<ShoppingProject> {
         this.id = id;
     }
 
-    public int getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(int date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

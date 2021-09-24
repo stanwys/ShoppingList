@@ -1,17 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/Title" android:layout_weight="4"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="12"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/Date"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:paddingLeft="5dp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
     <Button
-            android:text="Archive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/ArchiveButton" android:layout_weight="1"/>
-    <Button
-            android:text="Remove"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/RemoveButton" android:layout_weight="1"/>
+        android:id="@+id/ArchiveButton"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_margin="5dp"
+        android:text="Archive" />
+
+    <ImageButton
+        android:id="@+id/RemoveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        app:srcCompat="@android:drawable/ic_delete" />
+
 </LinearLayout>
