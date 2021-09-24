@@ -32,7 +32,6 @@ class ShoppingListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(ShoppingListViewModel::class.java)
-        //viewModel.initializeData()
 
         mListener = object : ShoppingAdapter.ListAdapterListener {
             override fun onClickRemoveButton(position: Int) {
@@ -78,6 +77,7 @@ class ShoppingListFragment : Fragment() {
     }
 
     private fun updateListView(){
+        viewModel.sortShoppingProjectsList()
         mListAdapter = ShoppingAdapter(requireActivity(),
             R.layout.shopping_project,
             ArrayList(viewModel.getShoppingProjectsList()), mListener)

@@ -3,7 +3,7 @@ package com.example.shoppinglist.model;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ShoppingProject {
+public class ShoppingProject implements Comparable<ShoppingProject> {
 
     private int id;
     private Date date;
@@ -22,6 +22,11 @@ public class ShoppingProject {
         this.name = name;
         this.date = new Date(date);
         this.archived = archived;
+    }
+
+    @Override
+    public int compareTo(ShoppingProject sp){
+        return this.date.compareTo(sp.getDate());
     }
 
     public int getArchived() {

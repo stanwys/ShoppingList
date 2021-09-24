@@ -36,12 +36,12 @@ class ShoppingListViewModel() : ViewModel() {
         dbHandler.value?.close()
     }
 
-    fun setShoppingProjectsList(spList : MutableList<ShoppingProject>) {
-        shoppingProjectsList.value = spList
+    fun sortShoppingProjectsList() {
+        shoppingProjectsList.value = shoppingProjectsList.value!!.sortedBy { it -> it.date.time }.toMutableList()
     }
 
-    fun setArchivedShoppingProjectsList(archSpList : MutableList<ShoppingProject>) {
-        archivedShoppingProjectsList.value = archSpList
+    fun sortArchivedShoppingProjectsList() {
+        archivedShoppingProjectsList.value = archivedShoppingProjectsList.value!!.sortedBy { it -> it.date.time }.toMutableList()
     }
 
     fun getShoppingProjectsList() : MutableList<ShoppingProject> =

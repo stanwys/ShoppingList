@@ -58,6 +58,7 @@ class ArchivedShoppingListFragment : Fragment() {
     }
 
     private fun updateListView(){
+        viewModel.sortArchivedShoppingProjectsList()
         mListAdapter = ShoppingAdapter(requireActivity(),
             R.layout.archived_shopping_project,
             ArrayList(viewModel.getArchivedShoppingProjectsList()), mListener)
